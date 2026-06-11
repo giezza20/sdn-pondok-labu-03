@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mutasi - SDN Pondok Labu 03</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header & Logo */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        /* Menu */
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        /* Search Box */
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+            background: #DCEFFF;
+            color: #444;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            background: #DCEFFF;
+            color: #444;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ========== HALAMAN MUTASI - UKURAN RAPI ========== */
+        
+        /* HERO MUTASI */
+        .mutasi-hero {
+            position: relative;
+            height: 280px;
+            background: url('assets/sekolah2.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .mutasi-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        /* SECTION MUTASI */
+        .mutasi-section {
+            padding: 45px 0;
+            background: white;
+        }
+
+        .mutasi-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* PERSYARATAN MUTASI */
+        .persyaratan-box {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 30px;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .persyaratan-box h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+            border-left: 4px solid #A7D2F7;
+            padding-left: 15px;
+        }
+
+        .persyaratan-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .persyaratan-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .persyaratan-list li:last-child {
+            border-bottom: none;
+        }
+
+        .persyaratan-list li i {
+            width: 25px;
+            color: #A7D2F7;
+            font-size: 1rem;
+        }
+
+        .persyaratan-list li span {
+            flex: 1;
+        }
+
+        /* TATA CARA MUTASI */
+        .tatacara-box {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .tatacara-box h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+            border-left: 4px solid #A7D2F7;
+            padding-left: 15px;
+        }
+
+        .tatacara-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tatacara-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .tatacara-list li:last-child {
+            border-bottom: none;
+        }
+
+        .nomor {
+            width: 30px;
+            height: 30px;
+            background: #DCEFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #1a1a2e;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .tatacara-list li p {
+            flex: 1;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* ========== FOOTER - SAMA PERSIS DENGAN INDEX ========== */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px 0 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Kolom 1 (email, telepon) - center */
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 2 (alamat) - center */
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 3 (sosial media) - RATA KIRI */
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.7rem;
+            margin: 0;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            .mutasi-hero {
+                height: 200px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .persyaratan-box, .tatacara-box {
+                padding: 20px;
+            }
+
+            .persyaratan-box h2, .tatacara-box h2 {
+                font-size: 1rem;
+            }
+
+            .persyaratan-list li {
+                font-size: 0.8rem;
+                gap: 10px;
+            }
+
+            .tatacara-list li p {
+                font-size: 0.8rem;
+            }
+
+            /* ========== FOOTER RESPONSIVE - SAMA PERSIS DENGAN INDEX ========== */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo SDN Pondok Labu 03">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO MUTASI -->
+        <section class="mutasi-hero">
+            <div class="hero-content">
+                <h1>Mutasi Siswa</h1>
+                <p>SDN PONDOK LABU 03</p>
+            </div>
+        </section>
+
+        <!-- PERSYARATAN & TATA CARA -->
+        <section class="mutasi-section">
+            <div class="container mutasi-container">
+
+                <!-- PERSYARATAN MUTASI -->
+                <div class="persyaratan-box">
+                    <h2>Persyaratan Mutasi SD</h2>
+                    <ul class="persyaratan-list">
+                        <li><i class="fas fa-file-alt"></i><span>Kartu Keluarga (KK) terbaru domisili baru</span></li>
+                        <li><i class="fas fa-birthday-cake"></i><span>Akta kelahiran</span></li>
+                        <li><i class="fas fa-briefcase"></i><span>Surat pindah tugas orang tua (dari instansi/perusahaan)</span></li>
+                        <li><i class="fas fa-book-open"></i><span>Rapor / Ijazah dari sekolah asal</span></li>
+                        <li><i class="fas fa-stamp"></i><span>Surat pernyataan keabsahan dokumen (bermeterai)</span></li>
+                        <li><i class="fas fa-globe"></i><span>Bukti pendaftaran online dari portal PPDB/SPMB</span></li>
+                    </ul>
+                </div>
+
+                <!-- TATA CARA MUTASI -->
+                <div class="tatacara-box">
+                    <h2>Tata Cara Mutasi</h2>
+                    <ul class="tatacara-list">
+                        <li>
+                            <div class="nomor">1</div>
+                            <p>Ambil formulir di TU sekolah</p>
+                        </li>
+                        <li>
+                            <div class="nomor">2</div>
+                            <p>Lengkapi berkas persyaratan</p>
+                        </li>
+                        <li>
+                            <div class="nomor">3</div>
+                            <p>Ikuti tes tertulis & wawancara di sekolah</p>
+                        </li>
+                        <li>
+                            <div class="nomor">4</div>
+                            <p>Pengumuman hasil mutasi</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        // LUCIDE ICON
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

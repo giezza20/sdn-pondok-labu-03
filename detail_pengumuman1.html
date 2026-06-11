@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Adiwiyata - SDN Pondok Labu 03</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header & Logo */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        /* Menu */
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        /* Search Box */
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* ========== HALAMAN DETAIL PENGUMUMAN - UKURAN SAMA KAYAK DETAIL BERITA ========== */
+        
+        .detail-hero {
+            position: relative;
+            height: 320px;
+            background: url('assets/pengumuman1.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .detail-hero h1 {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            padding: 0 20px;
+            line-height: 1.4;
+        }
+
+        /* TOMBOL BACK BULAT */
+        .back-circle {
+            position: fixed;
+            top: 115px;
+            left: 25px;
+            z-index: 9999;
+            width: 40px;
+            height: 40px;
+            background: #A7D2F7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: black;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-circle:hover {
+            background: #8fc8fb;
+            transform: scale(1.08);
+        }
+
+        .detail-content {
+            padding: 40px 0;
+            background: white;
+        }
+
+        .meta {
+            display: flex;
+            gap: 20px;
+            color: #A7D2F7;
+            margin-bottom: 25px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        .meta i {
+            margin-right: 5px;
+        }
+
+        .artikel {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 35px;
+        }
+
+        .artikel p {
+            line-height: 1.65;
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 0.82rem;
+        }
+
+        .artikel h2 {
+            margin: 22px 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .artikel img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========== FOOTER - SAMA PERSIS DENGAN INDEX ========== */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px 0 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Kolom 1 (email, telepon) - center */
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 2 (alamat) - center */
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 3 (sosial media) - RATA KIRI */
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.7rem;
+            margin: 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .detail-hero {
+                height: 200px;
+            }
+
+            .detail-hero h1 {
+                font-size: 1rem;
+                padding: 0 12px;
+            }
+
+            .artikel {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 6px;
+                font-size: 0.7rem;
+            }
+
+            .detail-content {
+                padding: 28px 0;
+            }
+
+            .artikel p {
+                font-size: 0.78rem;
+            }
+
+            .artikel h2 {
+                font-size: 1rem;
+            }
+
+            .back-circle {
+                top: 110px;
+                left: 12px;
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+
+            /* ========== FOOTER RESPONSIVE - SAMA PERSIS DENGAN INDEX ========== */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOMBOL BACK BULAT -->
+    <a href="pengumuman.html" class="back-circle">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo Sekolah">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO DETAIL PENGUMUMAN -->
+    <section class="detail-hero">
+        <h1>Menyambut Era Baru dengan Program Adiwiyata</h1>
+    </section>
+
+    <!-- KONTEN DETAIL PENGUMUMAN -->
+    <section class="detail-content">
+        <div class="container">
+
+            <div class="meta">
+                <span><i class="far fa-calendar-alt"></i> 26 Juli 2024</span>
+                <span><i class="fas fa-tag"></i> Adiwiyata Sekolah</span>
+            </div>
+
+            <div class="artikel">
+                <div>
+                    <p>
+                        Selamat datang di SDN Pondok Labu 03, tempat di mana pendidikan berkualitas dan kepedulian terhadap lingkungan berjalan seiring. Kami dengan bangga mengumumkan bahwa sekolah kami akan memulai program Adiwiyata, sebuah inisiatif berkelanjutan dari Kementerian Lingkungan Hidup dan Kehutanan yang bertujuan untuk menciptakan lingkungan sekolah yang bersih, hijau, dan ramah lingkungan. Program ini merupakan bagian dari komitmen kami untuk mendidik generasi mendatang dengan kesadaran lingkungan yang tinggi dan membangun kebiasaan hidup yang berkelanjutan.
+                    </p>
+
+                    <h2>Program Adiwiyata di SDN Pondok Labu 03</h2>
+                    <p>
+                        Program Adiwiyata adalah inisiatif nasional di Indonesia yang bertujuan untuk membentuk sekolah yang peduli dan berbudaya lingkungan. Sekolah Adiwiyata tidak hanya fokus pada pengelolaan lingkungan di dalam sekolah, tetapi juga mengajarkan siswa tentang pentingnya menjaga lingkungan dan memberikan mereka pengetahuan serta keterampilan untuk melakukannya. Program ini mengintegrasikan pendidikan lingkungan hidup ke dalam kegiatan belajar-mengajar dan kegiatan ekstrakurikuler, sehingga siswa dapat memahami dan menerapkan konsep ini dalam kehidupan sehari-hari.
+                    </p>
+
+                    <h2>Apa Itu Program Adiwiyata?</h2>
+                    <p>
+                        Program Adiwiyata adalah sebuah inisiatif yang dikembangkan oleh Kementerian Lingkungan Hidup dan Kehutanan untuk mendorong sekolah-sekolah di Indonesia agar menjadi lebih peduli terhadap lingkungan. Melalui program ini, sekolah didorong untuk menerapkan prinsip-prinsip pengelolaan lingkungan yang baik dan berkelanjutan dalam aktivitas sehari-hari. Adiwiyata tidak hanya fokus pada aspek lingkungan, tetapi juga mencakup pengembangan budaya sekolah yang positif dan edukasi tentang pentingnya pelestarian alam.
+                    </p>
+
+                    <h2>Visi dan Misi SDN Pondok Labu 03 dalam Program Adiwiyata</h2>
+                    <p>
+                        Di SDN Pondok Labu 03, kami percaya bahwa pendidikan lingkungan bukan hanya tanggung jawab sekolah, tetapi juga tanggung jawab setiap individu di komunitas sekolah. Dengan memulai program Adiwiyata, kami memiliki visi untuk menciptakan lingkungan sekolah yang bersih dan hijau, meningkatkan kesadaran lingkungan siswa, mengintegrasikan pendidikan lingkungan dalam kurikulum, serta melibatkan seluruh komunitas sekolah termasuk siswa, guru, orang tua, dan masyarakat sekitar.
+                    </p>
+
+                    <h2>Langkah-Langkah Implementasi Program Adiwiyata</h2>
+                    <p>
+                        Untuk memastikan implementasi yang efektif dari program Adiwiyata, kami akan mengambil beberapa langkah strategis, antara lain: pembentukan Tim Adiwiyata yang terdiri dari guru, siswa, dan perwakilan orang tua; pelatihan dan workshop untuk guru dan staf; kegiatan edukasi dan kampanye lingkungan seperti lomba karya ilmiah, pembuatan taman sekolah, dan kampanye pengurangan sampah; pengelolaan sampah dan daur ulang yang efektif; serta monitoring dan evaluasi rutin untuk memantau perkembangan program.
+                    </p>
+
+                    <h2>Manfaat Program Adiwiyata untuk Siswa dan Lingkungan</h2>
+                    <p>
+                        Melalui program Adiwiyata, SDN Pondok Labu 03 berharap dapat memberikan manfaat jangka panjang, baik untuk siswa maupun lingkungan. Beberapa manfaat utama termasuk peningkatan kesadaran dan kepedulian lingkungan pada siswa, siswa akan lebih bergotong royong dan berpartisipasi aktif dalam memahami cara-cara sederhana untuk mengurangi jejak ekologis sekolah, yang tidak hanya mendidik tetapi juga menginspirasi, masa depan yang lebih hijau dan berkelanjutan tidak hanya dapat menjadi harapan, tetapi juga kenyataan.
+                    </p>
+
+                    <h2>Penutup</h2>
+                    <p>
+                        Terima kasih atas perhatian dan dukungan Bapak/Ibu. Mari kita wujudkan perubahan positif untuk lingkungan dan generasi mendatang melalui program Adiwiyata di SDN Pondok Labu 03!
+                    </p>
+                </div>
+
+                <div>
+                    <img src="assets/pengumuman1.png" alt="Program Adiwiyata">
+                    <p style="font-size: 0.65rem; text-align: center; margin-top: 6px; color: #888;">
+                        Program Adiwiyata SDN Pondok Labu 03
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

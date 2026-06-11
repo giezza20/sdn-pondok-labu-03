@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PPDB - SDN Pondok Labu 03</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header & Logo */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        /* Menu */
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        /* Search Box - TIDAK AKTIF TAPI WARNA TETAP */
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+            background: #DCEFFF;
+            color: #444;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            background: #DCEFFF;
+            color: #444;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ========== HALAMAN PPDB - UKURAN RAPI ========== */
+        
+        /* HERO PPDB */
+        .ppdb-hero {
+            position: relative;
+            height: 280px;
+            background: url('assets/sekolah1.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .ppdb-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        /* SECTION PPDB */
+        .ppdb-section {
+            padding: 45px 0;
+            background: #f8f9fa;
+        }
+
+        /* ACCORDION PPDB */
+        .ppdb-accordion {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid #dbeafe;
+            border-radius: 18px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .ppdb-accordion-item {
+            margin-bottom: 0;
+            border: none;
+            border-bottom: 1px solid #e8eef5;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .ppdb-accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .ppdb-accordion-btn {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 16px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            color: #1a1a2e;
+        }
+
+        .ppdb-accordion-btn span {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            color: #A7D2F7;
+        }
+
+        .ppdb-accordion-item.active .ppdb-accordion-btn span {
+            transform: rotate(180deg);
+        }
+
+        .ppdb-accordion-item.active .ppdb-accordion-btn {
+            background: #A7D2F7;
+            color: white;
+        }
+
+        .ppdb-accordion-item.active .ppdb-accordion-btn span {
+            color: white;
+        }
+
+        .ppdb-accordion-content {
+            display: none;
+            padding: 20px 22px;
+            background: #ffffff;
+        }
+
+        .ppdb-accordion-item.active .ppdb-accordion-content {
+            display: block;
+        }
+
+        .ppdb-accordion-content p {
+            font-size: 0.85rem;
+            line-height: 1.65;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        /* Style untuk list dokumen */
+        .dokumen-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .dokumen-list li {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* Style untuk link di dalam accordion */
+        .ppdb-accordion-content a {
+            color: #A7D2F7;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .ppdb-accordion-content a:hover {
+            text-decoration: underline;
+            color: #6bb6f5;
+        }
+
+        /* ALUR PENDAFTARAN */
+        .alur-section {
+            padding: 45px 0;
+            background: #f8f9fa;
+        }
+
+        .alur-box {
+            background: white;
+            border: 1px solid #A7D2F7;
+            border-radius: 18px;
+            padding: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .alur-box h2 {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 28px;
+            color: #1a1a2e;
+        }
+
+        .alur-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .alur-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 25px;
+            left: 155px;
+            right: 155px;
+            height: 3px;
+            background: #A7D2F7;
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 85px;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            background: #DCEFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 auto 10px;
+            color: #1a1a2e;
+        }
+
+        .step p {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #555;
+            margin-top: 0;
+        }
+
+        /* FOOTER - RAPI */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 25px 0 15px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+            font-size: 0.7rem;
+        }
+
+        .footer-item i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.6rem;
+            margin: 0;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            .ppdb-hero {
+                height: 200px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero-content h2 {
+                font-size: 0.9rem;
+            }
+
+            .ppdb-accordion-btn {
+            width: 100%;
+            background: #ffffff;
+            border: none;
+            padding: 18px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            color: #1a1a2e;
+            }
+
+            .ppdb-accordion-content {
+                padding: 0 18px 18px 18px;
+            }
+
+            .ppdb-accordion-content p {
+                font-size: 0.8rem;
+            }
+
+            .dokumen-list li {
+                font-size: 0.78rem;
+            }
+
+            .alur-box {
+                padding: 20px;
+            }
+
+            .alur-box h2 {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .alur-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .alur-wrapper::before {
+                display: none;
+            }
+
+            .circle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .step p {
+                font-size: 0.65rem;
+            }
+
+            .step {
+                width: 100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo SDN Pondok Labu 03">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO PPDB -->
+        <section class="ppdb-hero">
+            <div class="hero-content">
+                <h1>Penerimaan Peserta Didik Baru</h1>
+                <h2>SDN PONDOK LABU 03</h2>
+            </div>
+        </section>
+
+        <!-- ACCORDION PPDB (SATU KOTAK UTUH) -->
+        <section class="ppdb-section">
+            <div class="container">
+                <div class="ppdb-accordion">
+
+                    <!-- Pendaftaran Online -->
+                    <div class="ppdb-accordion-item">
+                        <button class="ppdb-accordion-btn">
+                            Pendaftaran Online
+                            <span>▼</span>
+                        </button>
+                        <div class="ppdb-accordion-content">
+                            <p>Calon peserta didik dapat melakukan pendaftaran secara online melalui website resmi PPDB DKI Jakarta. <br><br><a href="https://spmb.jakarta.go.id/" target="_blank" rel="noopener noreferrer">🔗 Klik di sini untuk mengunjungi SPMB Jakarta</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Pendaftaran Ulang -->
+                    <div class="ppdb-accordion-item">
+                        <button class="ppdb-accordion-btn">
+                            Pendaftaran Ulang
+                            <span>▼</span>
+                        </button>
+                        <div class="ppdb-accordion-content">
+                            <p>Informasi jadwal dan kelompok akan diumumkan melalui grup WhatsApp.</p>
+                            <p>Peserta wajib menyerahkan dokumen sebagai syarat pendaftaran ulang:</p>
+                            <ul class="dokumen-list">
+                                <li>Fotokopi Kartu Keluarga (terbit minimal 1 tahun sebelum pendaftaran)</li>
+                                <li>Fotokopi Akta Kelahiran</li>
+                                <li>Pas foto berwarna ukuran 3x4 (2 lembar)</li>
+                                <li>Rapor asli dan fotokopi legalisir (semester 1-5)</li>
+                                <li>Jika ada, bukti penghargaan akademik/non-akademik tingkat internasional, nasional, provinsi, atau kabupaten/kota</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Grup WhatsApp PPDB -->
+                    <div class="ppdb-accordion-item">
+                        <button class="ppdb-accordion-btn">
+                            Grup WhatsApp PPDB
+                            <span>▼</span>
+                        </button>
+                        <div class="ppdb-accordion-content">
+                            <p>Bergabung ke grup WhatsApp untuk memperoleh informasi terbaru terkait PPDB, jadwal, dan pengumuman penting lainnya dari pihak sekolah.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ALUR PENDAFTARAN -->
+        <section class="alur-section">
+            <div class="container">
+                <div class="alur-box">
+                    <h2>Alur Pendaftaran Online</h2>
+                    <div class="alur-wrapper">
+                        <div class="step">
+                            <div class="circle">1</div>
+                            <p>Registrasi</p>
+                        </div>
+                        <div class="step">
+                            <div class="circle">2</div>
+                            <p>Isi Data</p>
+                        </div>
+                        <div class="step">
+                            <div class="circle">3</div>
+                            <p>Verifikasi</p>
+                        </div>
+                        <div class="step">
+                            <div class="circle">4</div>
+                            <p>Pengumuman</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        // PPDB ACCORDION
+        const ppdbBtns = document.querySelectorAll('.ppdb-accordion-btn');
+        
+        ppdbBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parent = btn.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // LUCIDE ICON
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

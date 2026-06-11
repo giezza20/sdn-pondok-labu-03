@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan - SDN Pondok Labu 03</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header & Logo */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        /* Menu */
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        /* Search Box */
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* ========== HALAMAN DETAIL PENGUMUMAN - UKURAN SAMA KAYAK DETAIL BERITA ========== */
+        
+        .detail-hero {
+            position: relative;
+            height: 320px;
+            background: url('assets/pengumuman2.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .detail-hero h1 {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            padding: 0 20px;
+            line-height: 1.4;
+        }
+
+        /* TOMBOL BACK BULAT */
+        .back-circle {
+            position: fixed;
+            top: 115px;
+            left: 25px;
+            z-index: 9999;
+            width: 40px;
+            height: 40px;
+            background: #A7D2F7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: black;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-circle:hover {
+            background: #8fc8fb;
+            transform: scale(1.08);
+        }
+
+        .detail-content {
+            padding: 40px 0;
+            background: white;
+        }
+
+        .meta {
+            display: flex;
+            gap: 20px;
+            color: #A7D2F7;
+            margin-bottom: 25px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        .meta i {
+            margin-right: 5px;
+        }
+
+        .artikel {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 35px;
+        }
+
+        .artikel p {
+            line-height: 1.65;
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 0.82rem;
+        }
+
+        .artikel h2 {
+            margin: 22px 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .artikel img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========== FOOTER - SAMA PERSIS DENGAN INDEX ========== */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px 0 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Kolom 1 (email, telepon) - center */
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 2 (alamat) - center */
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 3 (sosial media) - RATA KIRI */
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.7rem;
+            margin: 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .detail-hero {
+                height: 200px;
+            }
+
+            .detail-hero h1 {
+                font-size: 1rem;
+                padding: 0 12px;
+            }
+
+            .artikel {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 6px;
+                font-size: 0.7rem;
+            }
+
+            .detail-content {
+                padding: 28px 0;
+            }
+
+            .artikel p {
+                font-size: 0.78rem;
+            }
+
+            .artikel h2 {
+                font-size: 1rem;
+            }
+
+            .back-circle {
+                top: 110px;
+                left: 12px;
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+
+            /* ========== FOOTER RESPONSIVE - SAMA PERSIS DENGAN INDEX ========== */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOMBOL BACK BULAT -->
+    <a href="pengumuman.html" class="back-circle">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo Sekolah">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO DETAIL PENGUMUMAN -->
+    <section class="detail-hero">
+        <h1>Pengumuman Kelulusan SDN Pondok Labu 03 Tahun 2024</h1>
+    </section>
+
+    <!-- KONTEN DETAIL PENGUMUMAN -->
+    <section class="detail-content">
+        <div class="container">
+
+            <div class="meta">
+                <span><i class="far fa-calendar-alt"></i> 10 Juni 2024</span>
+                <span><i class="fas fa-tag"></i> Kelulusan</span>
+            </div>
+
+            <div class="artikel">
+                <div>
+                    <p>
+                        Assalamualaikum wr wb. Salam sejahtera, salam sehat, dan salam bahagia untuk kita semua. Bapak Ibu pendidik, tenaga kependidikan, peserta didik, dan orang tua/wali peserta didik SDN Pondok Labu 03.
+                    </p>
+
+                    <p>
+                        Marilah kita senantiasa bersyukur kepada Allah SWT, Tuhan YME atas segala rahmat, karunia, dan juga nikmat yang diberikan kepada kita.
+                    </p>
+
+                    <p>
+                        Setelah 6 tahun peserta didik menempuh pendidikan di SDN Pondok Labu 03, tentunya melalui berbagai hal, ada suka maupun duka dan alhamdulillah dapat dilalui dengan baik, bijak, serta bertanggung jawab. Bapak ibu orang tua/wali murid tentunya juga begitu sabar dan tulus mendampingi putra–putrinya dalam belajar di rumah. Kolaborasi sekolah dan orang tua/wali telah mengantarkan para peserta didik dalam menempuh serangkaian aktifitas pembelajaran dan juga asesmen yang dilakukan, baik penilaian langsung, tidak langsung, tertulis maupun praktik. Dari semua proses pembelajaran dan penilaian tersebut terangkum menjadi sebuah hasil yang menentukan kelulusan.
+                    </p>
+
+                    <h2>Surat Keputusan Kelulusan</h2>
+                    <p>
+                        Terlampir adalah Surat Keputusan Kepala SDN Pondok Labu 03 Nomor 062 Tentang Penetapan Kelulusan SDN Pondok Labu 03 Tahun Pelajaran 2023/2024. Selamat kepada ananda yang dinyatakan lulus dari SDN Pondok Labu 03. Jadilah peserta didik yang dapat membanggakan diri sendiri, orang tua, agama, dan masyarakat. Senantiasa kuatkan karakter akhlak mulia kalian.
+                    </p>
+
+                    <h2>Doa dan Harapan</h2>
+                    <p>
+                        Doa kami, semoga ananda semua dapat melanjutkan ke SMP, MTs, atau pesantren yang diharapkan dan semoga menjadi tempat terbaik bagi kalian dalam mengembangkan potensi di jenjang berikutnya.
+                    </p>
+
+                    <h2>Permohonan Maaf</h2>
+                    <p>
+                        Selaku Kepala SDN Pondok Labu 03 mewakili segenap dewan guru dan tenaga kependidikan SDN Pondok Labu 03 memohon maaf atas segala hal yang kurang berkenan. Terima kasih.
+                    </p>
+
+                    <p>
+                        Wassalamualaikum wr wb.
+                    </p>
+
+                    <p style="margin-top: 20px;">
+                        Jakarta, 10 Juni 2024<br>
+                        Kepala SDN Pondok Labu 03<br>
+                        <strong>Karyasih, S.Pd.</strong>
+                    </p>
+
+                    <p style="margin-top: 15px; font-style: italic;">
+                        SK Nomor 062 Tahun 2024 tentang Penetapan Kelulusan SDN Pondok Labu 03 Tahun 2024 dapat diklik disini
+                    </p>
+                </div>
+
+                <div>
+                    <img src="assets/pengumuman2.png" alt="Pengumuman Kelulusan">
+                    <p style="font-size: 0.65rem; text-align: center; margin-top: 6px; color: #888;">
+                        Pengumuman Kelulusan Tahun 2024
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

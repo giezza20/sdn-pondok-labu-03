@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelompok Kerja Pemilah Sampah - SDN Pondok Labu 03</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header & Logo */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        /* Menu */
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        /* Search Box */
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* ========== HALAMAN DETAIL BERITA - UKURAN KECIL & RAPI ========== */
+        
+        .detail-hero {
+            position: relative;
+            height: 320px;
+            background: url('assets/berita1.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .detail-hero h1 {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            padding: 0 20px;
+            line-height: 1.4;
+        }
+
+        /* TOMBOL BACK BULAT */
+        .btn-back-circle {
+            position: fixed;
+            top: 115px;
+            left: 25px;
+            z-index: 9999;
+            width: 40px;
+            height: 40px;
+            background: #A7D2F7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: black;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-back-circle:hover {
+            background: #8fc8fb;
+            transform: scale(1.08);
+        }
+
+        .detail-content {
+            padding: 40px 0;
+            background: white;
+        }
+
+        .meta {
+            display: flex;
+            gap: 20px;
+            color: #A7D2F7;
+            margin-bottom: 25px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        .meta i {
+            margin-right: 5px;
+        }
+
+        .artikel {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 35px;
+        }
+
+        .artikel p {
+            line-height: 1.65;
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 0.82rem;
+        }
+
+        .artikel h2 {
+            margin: 22px 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .artikel img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========== FOOTER - SAMA PERSIS DENGAN INDEX ========== */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px 0 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Kolom 1 (email, telepon) - center */
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 2 (alamat) - center */
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 3 (sosial media) - RATA KIRI */
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.7rem;
+            margin: 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .detail-hero {
+                height: 200px;
+            }
+
+            .detail-hero h1 {
+                font-size: 1rem;
+                padding: 0 12px;
+            }
+
+            .artikel {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 6px;
+                font-size: 0.7rem;
+            }
+
+            .detail-content {
+                padding: 28px 0;
+            }
+
+            .artikel p {
+                font-size: 0.78rem;
+            }
+
+            .artikel h2 {
+                font-size: 1rem;
+            }
+
+            .btn-back-circle {
+                top: 110px;
+                left: 12px;
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+
+            /* ========== FOOTER RESPONSIVE - SAMA PERSIS DENGAN INDEX ========== */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOMBOL BACK BULAT -->
+    <a href="berita.html" class="btn-back-circle">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo Sekolah">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="profil.html">Profil</a></li>
+
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO DETAIL BERITA -->
+    <section class="detail-hero">
+        <h1>Kelompok Kerja Pemilah Sampah Bersama Orang Tua di SDN Pondok Labu 03</h1>
+    </section>
+
+    <!-- KONTEN DETAIL BERITA -->
+    <section class="detail-content">
+        <div class="container">
+
+            <div class="meta">
+                <span><i class="far fa-calendar-alt"></i> 10 September 2024</span>
+                <span><i class="fas fa-tag"></i> Adiwiyata Sekolah</span>
+            </div>
+
+            <div class="artikel">
+                <div>
+                    <p>
+                        Sampah adalah salah satu masalah lingkungan yang paling signifikan di seluruh dunia, termasuk di Indonesia. Pada tingkat lokal, masalah ini sering kali dimulai dari rumah tangga dan sekolah. SDN Pondok Labu 03 adalah salah satu sekolah yang menyadari pentingnya peran mereka dalam menjaga lingkungan dan mendukung upaya pelestarian alam. Sebagai bagian dari program Adiwiyata, sekolah ini berkolaborasi dengan orang tua siswa dalam membentuk Kelompok Kerja Pemilah Sampah untuk mewujudkan visi sekolah yang ramah lingkungan.
+                    </p>
+
+                    <h2>Program Adiwiyata di SDN Pondok Labu 03</h2>
+                    <p>
+                        Program Adiwiyata adalah inisiatif nasional di Indonesia yang bertujuan untuk membentuk sekolah yang peduli dan berbudaya lingkungan. Sekolah Adiwiyata tidak hanya fokus pada pengelolaan lingkungan di dalam sekolah, tetapi juga mengajarkan siswa tentang pentingnya menjaga lingkungan dan memberikan mereka pengetahuan serta keterampilan untuk melakukannya. Program ini mengintegrasikan pendidikan lingkungan hidup ke dalam kegiatan belajar-mengajar dan kegiatan ekstrakurikuler, sehingga siswa dapat memahami dan menerapkan konsep ini dalam kehidupan sehari-hari. SDN Pondok Labu 03 telah berkomitmen untuk menjadi sekolah Adiwiyata. Komitmen ini terlihat dari berbagai inisiatif yang diluncurkan oleh sekolah, salah satunya adalah pengelolaan sampah secara berkelanjutan. Pengelolaan sampah ini tidak hanya terbatas pada siswa dan guru, tetapi juga melibatkan orang tua sebagai mitra penting dalam mendukung keberhasilan program.
+                    </p>
+
+                    <h2>Pembentukan Kelompok Kerja Pemilah Sampah</h2>
+                    <p>
+                        Untuk mendukung program Adiwiyata, SDN Pondok Labu 03 bersama-sama dengan para orang tua siswa membentuk Kelompok Kerja Pemilah Sampah (Pokja Pemilah Sampah). Kelompok ini berfungsi sebagai tim yang bertugas memastikan bahwa sampah yang dihasilkan di lingkungan sekolah dan rumah siswa dikelola dengan baik. Pembentukan Pokja ini bertujuan untuk memberikan edukasi lebih lanjut kepada siswa dan orang tua tentang pentingnya pemilihan sampah, daur ulang, serta pengurangan sampah plastik. Kolaborasi antara sekolah dan orang tua ini menjadi kunci penting dalam keberhasilan program pengelolaan sampah. Orang tua memiliki peran sentral dalam mendukung kebiasaan siswa di rumah, sehingga program ini bisa berjalan secara konsisten di lingkungan sekolah maupun di rumah. Pokja Pemilah Sampah tidak hanya bekerja di sekolah, tetapi juga berkolaborasi dengan warga sekitar untuk menciptakan lingkungan yang bersih dan nyaman.
+                    </p>
+
+                    <h2>Kegiatan Pemilahan Sampah</h2>
+                    <p>
+                        Sebagai bagian dari kelompok kerja ini, berbagai kegiatan pemilahan sampah dilakukan secara rutin di SDN Pondok Labu 03. Kegiatan ini melibatkan semua komponen sekolah, termasuk siswa, guru, dan orang tua. Di setiap kelas, terdapat tempat sampah yang berbeda untuk sampah organik, anorganik, dan sampah plastik. Siswa diajarkan untuk memisahkan sampah mereka sejak dini, dan mereka juga diberi penjelasan mengenai dampak negatif jika sampah tidak dikelola dengan baik. Setiap minggunya, Pokja Pemilah Sampah mengadakan sesi edukasi kepada siswa dan orang tua mengenai cara pemilahan sampah yang benar. Selain itu, kelompok ini juga mengajarkan cara mendaur ulang sampah yang dapat digunakan kembali, seperti botol plastik atau kertas bekas. Siswa diajak untuk membuat kerajinan tangan dari barang-barang yang sudah tidak terpakai, yang nantinya bisa digunakan kembali atau bahkan dijual untuk menghasilkan pendapatan tambahan bagi kegiatan sekolah.
+                    </p>
+
+                    <h2>Peran Orang Tua dalam Pengelolaan Sampah</h2>
+                    <p>
+                        Orang tua memegang peran yang sangat penting dalam memastikan keberlanjutan program pengelolaan sampah ini. Di rumah, orang tua diharapkan dapat mendukung anak-anak mereka untuk terus mempraktikkan kebiasaan pemilahan sampah yang telah diajarkan di sekolah. Mereka juga dilibatkan dalam berbagai kegiatan yang diselenggarakan oleh Pokja Pemilah Sampah, seperti kerja bakti di lingkungan sekolah dan lingkungan sekitar, serta sosialisasi pengelolaan sampah di tingkat masyarakat. Kolaborasi ini menunjukkan bahwa pendidikan lingkungan tidak hanya menjadi tanggung jawab sekolah, tetapi juga harus melibatkan keluarga dan masyarakat. Dengan melibatkan orang tua, siswa akan merasa lebih termotivasi untuk menjaga lingkungan dan menerapkan kebiasaan baik di rumah. Orang tua juga mendapatkan edukasi yang bermanfaat mengenai pentingnya pemilahan sampah, yang mungkin sebelumnya belum sepenuhnya mereka sadari.
+                    </p>
+
+                    <h2>Kesimpulan</h2>
+                    <p>
+                        Kolaborasi antara pihak sekolah dan orang tua melalui Kelompok Kerja Pemilah Sampah menjadi contoh nyata bagaimana pendidikan lingkungan dapat diterapkan secara berkelanjutan, baik di lingkungan sekolah maupun di rumah. Program ini akan terus dikembangkan untuk menciptakan lingkungan sekolah yang bersih, hijau, dan nyaman, serta mendukung terwujudnya sekolah Adiwiyata yang peduli dan berbudaya lingkungan.
+                    </p>
+                </div>
+
+                <div>
+                    <img src="assets/berita1.png" alt="Kegiatan Pemilahan Sampah">
+                    <p style="font-size: 0.65rem; text-align: center; margin-top: 6px; color: #888;">
+                        Kegiatan pemilahan sampah bersama orang tua dan siswa
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

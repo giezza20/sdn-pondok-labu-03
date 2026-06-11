@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita - SDN Pondok Labu 03</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* ========== HEADER ========== */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* ========== HALAMAN BERITA - UKURAN PROFESIONAL ========== */
+        .berita-page {
+            padding: 50px 0;
+            background: #f8f9fa;
+            min-height: calc(100vh - 200px);
+        }
+
+        .judul-berita {
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1a1a2e;
+            letter-spacing: -0.3px;
+        }
+
+        .berita-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 400px);
+            justify-content: center;
+            gap: 35px;
+        }
+
+        .berita-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .berita-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .berita-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .berita-content {
+            padding: 18px;
+        }
+
+        .berita-content h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.45;
+            color: #1a1a2e;
+        }
+
+        .berita-content p {
+            color: #555;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ========== FOOTER - SAMA PERSIS DENGAN INDEX ========== */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px 0 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Kolom 1 (email, telepon) - center */
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 2 (alamat) - center */
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 3 (sosial media) - RATA KIRI */
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.7rem;
+            margin: 0;
+        }
+
+        /* ========== RESPONSIVE MOBILE ========== */
+        @media (max-width: 768px) {
+            .berita-page {
+                padding: 35px 0;
+            }
+            
+            .judul-berita {
+                font-size: 1.4rem;
+                margin-bottom: 30px;
+            }
+            
+            .berita-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .berita-card img {
+                height: 190px;
+            }
+            
+            .berita-content {
+                padding: 16px;
+            }
+            
+            .berita-content h3 {
+                font-size: 0.95rem;
+            }
+            
+            .berita-content p {
+                font-size: 0.85rem;
+            }
+            
+            /* ========== FOOTER RESPONSIVE - SAMA PERSIS DENGAN INDEX ========== */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo Sekolah">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HALAMAN BERITA -->
+    <section class="berita-page">
+        <div class="container">
+            <h2 class="judul-berita">Berita Terbaru</h2>
+
+            <div class="berita-grid">
+                <!-- BERITA KIRI -->
+                <div class="berita-card">
+                    <a href="detail_berita1.html">
+                        <img src="assets/berita1.png" alt="Kelompok Kerja Pemilah Sampah">
+                        <div class="berita-content">
+                            <h3>Kelompok Kerja Pemilah Sampah Bersama Orang Tua di SDN Pondok Labu 03</h3>
+                            <p>Sampah adalah salah satu masalah lingkungan yang paling signifikan di seluruh dunia, termasuk di Indonesia.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- BERITA KANAN -->
+                <div class="berita-card">
+                    <a href="detail_berita2.html">
+                        <img src="assets/berita2.png" alt="Pramuka Lepas Burung">
+                        <div class="berita-content">
+                            <h3>Pramuka SDN Pondok Labu 03 Lepas 500 Ekor Burung Saat Perjusa</h3>
+                            <p>SDN Pondok Labu 03 kembali menggelar kegiatan Perjusa, setelah minggu yang lalu menyelenggarakan Persari.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SDN Pondok Labu 03 - Sekolah Unggul Berkarakter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ========== PERBAIKAN UKURAN FONT RESPONSIF ========== */
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header & Logo */
+        .logo-text h1 {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+            color: #666;
+        }
+
+        /* Menu */
+        .menu > li > a,
+        .dropdown > a {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 16px;
+        }
+        .dropdown-menu a {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+        }
+
+        /* Search Box */
+        .search-box {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            padding: 8px 20px;
+        }
+        .search-mobile {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* Hero */
+        .hero h2 {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .hero h2 span {
+            display: inline;
+        }
+        @media (max-width: 768px) {
+            .hero h2 span {
+                display: block;
+            }
+        }
+
+        /* Visi Misi Desktop */
+        .desktop-content h2 {
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .desktop-content p,
+        .desktop-content li {
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            line-height: 1.7;
+        }
+        .kepsek-text h3 {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+        .kepsek-text p {
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+        }
+
+        /* Accordion Mobile */
+        .accordion-btn {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            padding: 15px 20px;
+        }
+        .accordion-content p,
+        .accordion-content li {
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            line-height: 1.7;
+        }
+
+        /* Statistik */
+        .stat-card h3 {
+            font-size: clamp(1.3rem, 5vw, 1.6rem);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .stat-card p {
+            font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+            font-weight: 500;
+        }
+
+        /* Galeri */
+        .section-title h2 {
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .section-title p {
+            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+            color: #555;
+        }
+
+        /* ========== GALERI - EFEK MAJU KE DEPAN (ZOOM IN) ========== */
+        /* PERBAIKAN: tambah border-radius & overflow hidden di link pembungkus */
+        .galeri-grid a {
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        /* EFEK HOVER - MAJU KE DEPAN (zoom in) */
+        .galeri-grid a:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* EFEK KLIK - MENGEJUT SEDIKIT */
+        .galeri-grid a:active {
+            transform: scale(0.98);
+            transition: transform 0.05s ease;
+        }
+        
+        .galeri-grid img {
+            transition: all 0.2s ease;
+            border-radius: 12px;
+            width: 100%;
+            display: block;
+        }
+        
+        .galeri-grid a:hover img {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========== BACA SELENGKAPNYA / TAMPILKAN LEBIH SEDIKIT STYLE ========== */
+        .toggle-misi {
+            display: inline-block;
+            margin-top: 15px;
+            color: #1a1a2e;
+            background: #A7D2F7;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .toggle-misi:hover {
+            background: #8fc8fb;
+            transform: translateY(-2px);
+        }
+
+        #misi-lengkap {
+            margin-top: 10px;
+        }
+
+        /* ========== FOOTER - SOSIAL MEDIA RATA KIRI ========== */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 30px 0 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Kolom 1 (email, telepon) - tetap center */
+        .footer-item:first-child {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 2 (alamat) - tetap center */
+        .footer-item:nth-child(2) {
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Kolom 3 (sosial media) - RATA KIRI */
+        .footer-item:last-child {
+            align-items: flex-start;
+        }
+
+        .footer-item p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background: #94c7f5;
+        }
+
+        .footer-bottom p {
+            font-size: 0.7rem;
+            margin: 0;
+        }
+        
+        /* Lokasi */
+        .section-title + .map-container p {
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        /* ========== RESPONSIVE MOBILE ========== */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-item {
+                align-items: center !important;
+                text-align: center;
+            }
+            
+            .footer-item p {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Logo SDN Pondok Labu 03">
+                <div class="logo-text">
+                    <h1>SDN PONDOK LABU 03</h1>
+                    <p>Cilandak Kota Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="search.html" class="search-mobile">🔍</a>
+                <div class="hamburger" aria-label="Menu">☰</div>
+            </div>
+
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li class="dropdown">
+                        <a href="#">Informasi ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="berita.html">Berita</a></li>
+                            <li><a href="pengumuman.html">Pengumuman</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li class="dropdown">
+                        <a href="#">Penerimaan ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ppdb.html">PPDB</a></li>
+                            <li><a href="mutasi.html">Mutasi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="search.html" class="search-box">🔍 Pencarian</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <h2>Selamat Datang Di <span>SD Negeri Pondok Labu 03</span></h2>
+                <div class="hero-image">
+                    <img src="assets/sekolah1.png" alt="Gedung SDN Pondok Labu 03">
+                    <img src="assets/sekolah2.png" alt="Suasana Belajar SDN Pondok Labu 03">
+                    <img src="assets/sekolah3.png" alt="Halaman Sekolah SDN Pondok Labu 03">
+                    <img src="assets/sekolah4.png" alt="Kegiatan Belajar SDN Pondok Labu 03">
+                </div>
+            </div>
+        </section>
+
+        <section class="visi-misi">
+            <div class="container visi-container">
+                <div class="kepsek">
+                    <img src="assets/kepala-sekolah.jpeg" alt="Kepala Sekolah SDN Pondok Labu 03">
+                    <div class="kepsek-text">
+                        <h3>Kepala Sekolah</h3>
+                        <p>Lidia Vistarini</p>
+                    </div>
+                </div>
+
+                <div class="desktop-content">
+                    <h2>Visi</h2>
+                    <p>Terwujudnya generasi pembelajar yang berkarakter, sehat dan berwawasan lingkungan.</p>
+
+                    <h2>Misi</h2>
+                    <ol id="misi-singkat">
+                        <li>Menanamkan nilai-nilai karakter seperti kejujuran, tanggung jawab, disiplin, dan toleransi dalam seluruh aktivitas pembelajaran dan kehidupan sekolah.</li>
+                        <li>Meningkatkan kualitas pembelajaran yang aktif, kreatif, dan menyenangkan untuk membentuk peserta didik yang cerdas dan mandiri.</li>
+                        <li>Membangun budaya literasi dan numerasi yang kuat sebagai dasar pembentukan pembelajar sepanjang hayat.</li>
+                    </ol>
+
+                    <!-- Misi 4-6 disembunyikan, muncul saat klik Baca Selengkapnya -->
+                    <div id="misi-lengkap" style="display: none;">
+                        <ol start="4">
+                            <li>Mendorong gaya hidup sehat melalui kegiatan olahraga, pola hidup bersih, dan layanan kesehatan sekolah yang terintegrasi.</li>
+                            <li>Mengembangkan kepedulian dan kesadaran lingkungan melalui pembiasaan, program cinta lingkungan, dan pengelolaan sekolah berbasis ekoliterasi.</li>
+                            <li>Meningkatkan peran serta orang tua dan masyarakat dalam mendukung program-program pendidikan dan pembentukan karakter peserta didik.</li>
+                        </ol>
+                    </div>
+
+                    <button class="toggle-misi" id="toggleMisiBtn" onclick="toggleMisi()">
+                        Baca Selengkapnya »
+                    </button>
+                </div>
+
+                <div class="mobile-accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-btn" aria-label="Lihat Visi Sekolah">Visi <span>▼</span></button>
+                        <div class="accordion-content">
+                            <p>Terwujudnya generasi pembelajar yang berkarakter, sehat dan berwawasan lingkungan.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-btn" aria-label="Lihat Misi Sekolah">Misi <span>▼</span></button>
+                        <div class="accordion-content">
+                            <ol>
+                                <li>Menanamkan nilai-nilai karakter seperti kejujuran, tanggung jawab, disiplin, dan toleransi dalam seluruh aktivitas pembelajaran dan kehidupan sekolah.</li>
+                                <li>Meningkatkan kualitas pembelajaran yang aktif, kreatif, dan menyenangkan untuk membentuk peserta didik yang cerdas dan mandiri.</li>
+                                <li>Membangun budaya literasi dan numerasi yang kuat sebagai dasar pembentukan pembelajar sepanjang hayat.</li>
+                                <li>Mendorong gaya hidup sehat melalui kegiatan olahraga, pola hidup bersih, dan layanan kesehatan sekolah yang terintegrasi.</li>
+                                <li>Mengembangkan kepedulian dan kesadaran lingkungan melalui pembiasaan, program cinta lingkungan, dan pengelolaan sekolah berbasis ekoliterasi.</li>
+                                <li>Meningkatkan peran serta orang tua dan masyarakat dalam mendukung program-program pendidikan dan pembentukan karakter peserta didik.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="statistik">
+            <div class="container">
+                <div class="statistik-grid">
+                    <div class="stat-card">
+                        <i data-lucide="users"></i>
+                        <h3 class="counter" data-target="35">0</h3>
+                        <p>Tenaga Pendidik</p>
+                    </div>
+                    <div class="stat-card">
+                        <i data-lucide="graduation-cap"></i>
+                        <h3 class="counter" data-target="300">0</h3>
+                        <p>Prestasi</p>
+                    </div>
+                    <div class="stat-card">
+                        <i data-lucide="badge-check"></i>
+                        <h3 class="counter" data-target="750">0</h3>
+                        <p>Siswa Aktif</p>
+                    </div>
+                    <div class="stat-card">
+                        <i data-lucide="medal"></i>
+                        <h3 class="counter" data-target="11">0</h3>
+                        <p>Ekstrakurikuler</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="galeri">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Galeri Kegiatan</h2>
+                    <p>Galeri Kegiatan SDN PONDOK LABU 03</p>
+                </div>
+                <div class="galeri-grid">
+                    <a href="galeri.html">
+                        <img src="assets/galeri1.png" alt="Kegiatan Belajar Mengajar">
+                    </a>
+                    <a href="galeri.html">
+                        <img src="assets/galeri2.png" alt="Kegiatan Pramuka">
+                    </a>
+                    <a href="galeri.html">
+                        <img src="assets/galeri3.png" alt="Kegiatan Olahraga">
+                    </a>
+                    <a href="galeri.html">
+                        <img src="assets/galeri4.png" alt="Kegiatan Seni Budaya">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="lokasi">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Lokasi Sekolah</h2>
+                    <p>SDN Pondok Labu 03 Jakarta Selatan</p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.6388892103937!2d106.79199337355568!3d-6.311079961758078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ee17e301eb0f%3A0x1ac6da849dd4dd9e!2sSDN%20Pondok%20Labu%2003!5e0!3m2!1sid!2sid!4v1780620674003!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta Lokasi SDN Pondok Labu 03"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-item">
+                <i data-lucide="mail"></i>
+                <p>sdnpondoklabu3@gmail.com</p>
+                <i data-lucide="phone"></i>
+                <p>02122705798</p>
+            </div>
+            <div class="footer-item">
+                <i data-lucide="map-pin"></i>
+                <p>Jl. H. Saleh No. 37 Kel.<br>Pondok Labu, Kec. Cilandak</p>
+            </div>
+            <div class="footer-item">
+                <p><i class="fa-brands fa-facebook-f"></i> Facebook</p>
+                <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+                <p><i class="fa-brands fa-youtube"></i> YouTube</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SDN Pondok Labu 03</p>
+            <p>Prototype by Giezza Novita Mawardi</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi toggle untuk Baca Selengkapnya / Tampilkan Lebih Sedikit
+        function toggleMisi() {
+            const misiLengkap = document.getElementById('misi-lengkap');
+            const btn = document.getElementById('toggleMisiBtn');
+            
+            if (misiLengkap.style.display === 'none') {
+                misiLengkap.style.display = 'block';
+                btn.innerHTML = 'Tampilkan Lebih Sedikit «';
+            } else {
+                misiLengkap.style.display = 'none';
+                btn.innerHTML = 'Baca Selengkapnya »';
+            }
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
