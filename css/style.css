@@ -555,6 +555,12 @@ footer {
 /* ========== MOBILE RESPONSIVE ========== */
 @media (max-width: 768px) {
 
+    .kepsek {
+    width: 240px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    }
+
     .visi-container {
         gap: 0;
     }
